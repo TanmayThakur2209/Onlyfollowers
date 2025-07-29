@@ -1,0 +1,22 @@
+/* Remove border around the entire editor */
+.ql-container.ql-snow {
+  border: none !important;
+}
+
+/* Remove border from the toolbar */
+.ql-toolbar.ql-snow {
+  border: none !important;
+}
+
+/* Optional: add your own custom border or styling */
+.custom-quill .ql-container.ql-snow {
+  border: 2px dashed #888 !important;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+}
+
+/* Optional: add background to toolbar */
+.custom-quill .ql-toolbar.ql-snow {
+  background-color: #f0f0f0;
+  border-radius: 8px 8px 0 0;
+}
