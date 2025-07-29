@@ -17,6 +17,12 @@ app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 app.use("/uploads", express.static("uploads"));
 
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
+
 
 
 mongoose.connect(process.env.MONGO_URI)
