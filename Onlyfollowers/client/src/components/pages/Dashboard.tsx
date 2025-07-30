@@ -19,7 +19,7 @@ function Dashboard(){
   
     if (!token) return;
   
-    fetch("http://localhost:5000/api/user/profile", {
+    fetch("https://onlyfollowers.onrender.com/api/user/profile", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
