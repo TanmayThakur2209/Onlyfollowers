@@ -5,22 +5,28 @@ import { IoIosArrowForward, IoIosArrowBack, IoIosClose } from "react-icons/io";
 
 
 function Home() {
+const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  const scrollRef = useRef(null);
   const [selectedTab, setSelectedTab] = useState("All");
 
-  const handleScrollRight = () => {
+const handleScrollRight = () => {
+  if (scrollRef.current) {
     scrollRef.current.scrollBy({
       left: 400,
       behavior: "smooth",
     });
-  };
-  const handleScrollLeft = () => {
+  }
+};
+
+const handleScrollLeft = () => {
+  if (scrollRef.current) {
     scrollRef.current.scrollBy({
       left: -400,
       behavior: "smooth",
     });
-  };
+  }
+};
+
 
 
   
