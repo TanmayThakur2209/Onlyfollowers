@@ -3,7 +3,7 @@ import { MongoClient, ServerApiVersion } from "mongodb";
 // const uri = process.env.MONGO_URI;
 
 
-const uri = "mongodb+srv://ttanmay22:Tanmay22@onlyfollowers.0gqllyx.mongodb.net/?retryWrites=true&w=majority&appName=Onlyfollowers";
+const uri = "mongodb+srv://ttanmay22:Tanmay22@onlyfollowers.owwlobo.mongodb.net/?retryWrites=true&w=majority&appName=Onlyfollowers";
 
 
 const client = new MongoClient(uri, {
