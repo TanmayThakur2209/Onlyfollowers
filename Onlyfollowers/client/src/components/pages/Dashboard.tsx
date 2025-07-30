@@ -40,7 +40,7 @@ function Dashboard(){
     formData.append(type === "cover" ? "coverPhoto" : "profilePhoto", file);
 
     const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:5000/api/user/upload-photos", {
+    const res = await fetch("https://onlyfollowers.onrender.com/api/user/upload-photos", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`
@@ -64,7 +64,7 @@ function Dashboard(){
   const handleDelete = async (type: "cover" | "profile") => {
   try {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://localhost:5000/api/user/delete-photo?type=${type}`, {
+    const res = await fetch(`https://onlyfollowers.onrender.com/api/user/delete-photo?type=${type}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -98,7 +98,7 @@ function Dashboard(){
   {user?.coverPhoto?.path ? (
     getCoverPhotoType(user.coverPhoto.path) === "video" ? (
       <video
-        src={`http://localhost:5000/uploads/${user.coverPhoto.path}`}
+        src={`https://onlyfollowers.onrender.com/uploads/${user.coverPhoto.path}`}
         autoPlay
         muted
         loop
@@ -107,7 +107,7 @@ function Dashboard(){
       />
     ) : (
       <img
-        src={`http://localhost:5000/uploads/${user.coverPhoto.path}`}
+        src={`https://onlyfollowers.onrender.com/uploads/${user.coverPhoto.path}`}
         className="absolute inset-0 w-full h-full object-cover"
         alt="Cover"
       />
@@ -132,7 +132,7 @@ function Dashboard(){
               </div>
 
         <div style={user?.profilePhoto?.path? {
-          backgroundImage: `url("http://localhost:5000/uploads/${user.profilePhoto.path}")`,
+          backgroundImage: `url("https://onlyfollowers.onrender.com/uploads/${user.profilePhoto.path}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }
