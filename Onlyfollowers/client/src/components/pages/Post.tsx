@@ -77,7 +77,7 @@ const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
             post.append("files",file);
         });
         try {
-            const res = await fetch("http://localhost:5000/api/post/upload", {
+            const res = await fetch("https://onlyfollowers.onrender.com/api/post/upload", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
