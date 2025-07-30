@@ -11,7 +11,7 @@ function SignupPage(){
         e.preventDefault();
         try
         {
-             const response = await axios.post("http://localhost:5000/api/auth/register", {
+             const response = await axios.post("https://onlyfollowers.onrender.com/api/auth/register", {
         username, password,});
 
       alert("Login successful! Token: " + response.data.token);
