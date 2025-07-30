@@ -46,7 +46,7 @@ function Library(){
     useEffect(() => {
     const fetchPosts = async () => {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/api/post/my-posts",{
+      const res = await fetch("https://onlyfollowers.onrender.com/api/post/my-posts",{
 
         headers: {
         Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ function Library(){
     const handleDelete = async (postId: string) => {
   try {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://localhost:5000/api/post/${postId}`, {
+    const res = await fetch(`https://onlyfollowers.onrender.com/api/post/${postId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
