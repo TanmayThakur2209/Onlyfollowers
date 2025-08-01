@@ -220,14 +220,14 @@ gsap.fromTo(
 
 
 
-    <section className=" bg-[#c7790c] w-full h-[150vh] relative">
+{/*     <section className=" bg-[#c7790c] w-full h-[150vh] relative">
 
             <img ref={img1} className="w-[15%] m-30 absolute" src="assets/pexels-todd-trapani-488382-1535162.jpg"/>
             <img ref={img2} className="w-[15%] m-40 absolute" src="assets/pexels-eberhardgross-1743366.jpg"/>
 
-    </section>
+    </section> */}
 
-    <section className="bg-[url('assets/pexels-steve-1269968.jpg')] bg-cover w-full h-screen flex justify-center items-center " >
+    <section className="bg-[url('/assets/pexels-steve-1269968.jpg')] bg-cover w-full h-screen flex justify-center items-center " >
 
     <div ref={card} className="bg-[#ffffff] w-[20%] h-[55%] rounded-2xl flex flex-col justify-cente items-center">
       <Link to="/"> <img className={` w-30 mt-5`}  src="https://img.icons8.com/color-glass/48/mango.png"/></Link>
