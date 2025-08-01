@@ -33,38 +33,38 @@ function LandingPage(){
     
     useEffect(() =>{
      const ctx = gsap.context(() => {
-    gsap.fromTo(
-        img1.current,
-        {opacity:1,
-            y:0,},
-        { opacity:1,
-            y:400,
-            duration:1,
-            x:100, 
-            scrollTrigger : {
-            trigger: img1.current,
-            start: "top center",  
-            scrub:1,         
-        },
-        }
-    );
-gsap.fromTo(
-        img2.current,
-        { opacity: 1, y: 0, z:10 },
-        {
-          opacity: 1,
-          y: 400,
-          z:0,
-          duration: 1,
-          delay: 1,
-          x:800,
-          scrollTrigger: {
-            trigger: img2.current,
-             start: "top 60%",
-            scrub:1
-          },
-        }
-      );
+//     gsap.fromTo(
+//         img1.current,
+//         {opacity:1,
+//             y:0,},
+//         { opacity:1,
+//             y:400,
+//             duration:1,
+//             x:100, 
+//             scrollTrigger : {
+//             trigger: img1.current,
+//             start: "top center",  
+//             scrub:1,         
+//         },
+//         }
+//     );
+// gsap.fromTo(
+//         img2.current,
+//         { opacity: 1, y: 0, z:10 },
+//         {
+//           opacity: 1,
+//           y: 400,
+//           z:0,
+//           duration: 1,
+//           delay: 1,
+//           x:800,
+//           scrollTrigger: {
+//             trigger: img2.current,
+//              start: "top 60%",
+//             scrub:1
+//           },
+//         }
+//       );
 
 
       gsap.fromTo(
