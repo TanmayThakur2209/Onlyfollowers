@@ -123,6 +123,9 @@ function Library(){
                 return (
                 <video
                   key={idx}
+                  loop
+                  muted
+                  autoPlay
                   className="w-full rounded-md  object-cover">
                   <source src={fileUrl} type={`video/${ext}`} />
                 </video>
