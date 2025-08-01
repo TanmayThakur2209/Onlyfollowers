@@ -5,6 +5,7 @@ function SignupPage(){
 
     const [username, SetUsername]=useState("");
     const [password, SetPassword]=useState("");
+    const [redirect, SetRedirect]=useState(false)
 
     const handleSubmit = async (e: React.FormEvent)=>{
 
@@ -13,6 +14,7 @@ function SignupPage(){
         {
              const response = await axios.post("https://onlyfollowers.onrender.com/api/auth/register", {
         username, password,});
+            SetRedirect(true)
 
       alert("Login successful! Token: " + response.data.token);
       localStorage.setItem("token", response.data.token);
@@ -20,8 +22,11 @@ function SignupPage(){
       alert("User Already Exist");
     }
     console.log("Sending login request with:", { username, password });
-
         };
+    const token = localStorage.getItem("token");
+    if (token||redirect){
+        return <Navigate to="/home"/>
+    }
 
     
 
