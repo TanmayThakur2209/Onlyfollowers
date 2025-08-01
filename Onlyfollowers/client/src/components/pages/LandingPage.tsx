@@ -220,12 +220,6 @@ gsap.fromTo(
 
 
 
-{/*     <section className=" bg-[#c7790c] w-full h-[150vh] relative">
-
-            <img ref={img1} className="w-[15%] m-30 absolute" src="assets/pexels-todd-trapani-488382-1535162.jpg"/>
-            <img ref={img2} className="w-[15%] m-40 absolute" src="assets/pexels-eberhardgross-1743366.jpg"/>
-
-    </section> */}
 
     <section className="bg-[url('/assets/pexels-steve-1269968.jpg')] bg-cover w-full h-screen flex justify-center items-center " >
 
