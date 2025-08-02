@@ -169,13 +169,21 @@ function SidebarCreators() {
       <div className="duration-200 transition-all">
 
       {isCollapsed ? (<div className="bottom-0 border-amber-50 border-2 m-2 rounded-full items-center flex">
-        <img src={`https://onlyfollowers.onrender.com/uploads/${user?.profilePhoto.path}`} className="p-1 rounded-full h-10 w-10"/> </div>) 
+        {user?.profilePhoto?.path ? (
+          <img src={`https://onlyfollowers.onrender.com/uploads/${user.profilePhoto.path}`} alt={user.username} className="m-1 rounded-full h-10 w-10"/>) 
+          : 
+          (<div className="m-1 rounded-full h-10 w-10 bg-[#d6480b] flex items-center justify-center text-white">
+            {user?.username?.[0] || "U"}</div>)}
         
         :
 
        ( <div ref={moreRef} className="bottom-0  border-amber-50 border-1 m-2 duration-200 transition-all rounded-xl px-1 justify-between items-center flex">
         <div className="flex items-center rounded-xl hover:bg-[#7b7a7a] px-2 ">
-        <img src={`https://onlyfollowers.onrender.com/uploads/${user?.profilePhoto.path}`} className="m-1 rounded-full h-10 w-10"/>
+         {user?.profilePhoto?.path ? (
+          <img src={`https://onlyfollowers.onrender.com/uploads/${user.profilePhoto.path}`} alt={user.username} className="m-1 rounded-full h-10 w-10"/>) 
+          : 
+          (<div className="m-1 rounded-full h-10 w-10 bg-[#d6480b] flex items-center justify-center text-white">
+            {user?.username?.[0] || "U"}</div>)}
         <h1 className=""> {user? user.username:"Loading..."} <p className="text-xs text-[#b4b4b4]">Creator</p></h1>
         </div>
         <FiMoreVertical className=" cursor-pointer hover:bg-[#666666] rounded-full text-3xl p-1" onClick={()=> setMore(!isMore)} />
