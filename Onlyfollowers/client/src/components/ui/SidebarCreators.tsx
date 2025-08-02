@@ -178,7 +178,7 @@ function SidebarCreators() {
        ( <div ref={moreRef} className="bottom-0  border-amber-50 border-2 m-2 duration-200 transition-all rounded-xl px-1 justify-between items-center flex">
         <div className="flex items-center">
         {user?.profilePhoto?.path ? (
-          <img src={`https://onlyfollowers.onrender.com/${user.profilePhoto.path}`} alt={user.username} className="m-1 rounded-full h-10 w-10"/>) 
+          <img src={`https://onlyfollowers.onrender.com/uploads/${user.profilePhoto.path}`} alt={user.username} className="m-1 rounded-full h-10 w-10"/>) 
           : 
           (<div className="m-1 rounded-full h-10 w-10 bg-[#d6480b] flex items-center justify-center text-white">
             {user?.username?.[0] || "U"}</div>)}
