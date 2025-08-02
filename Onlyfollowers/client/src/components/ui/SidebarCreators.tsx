@@ -173,7 +173,7 @@ function SidebarCreators() {
           <img src={`https://onlyfollowers.onrender.com/uploads/${user.profilePhoto.path}`} alt={user.username} className="m-1 rounded-full h-10 w-10"/>) 
           : 
           (<div className="m-1 rounded-full h-10 w-10 bg-[#d6480b] flex items-center justify-center text-white">
-            {user?.username?.[0] || "U"}</div>)} </div>):
+            {user?.username?.[0] || "U"}</div>)} </div>)
         
         :
 
