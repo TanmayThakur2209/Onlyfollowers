@@ -1,7 +1,7 @@
 import LandingPage from "./components/pages/LandingPage"
 import LoginPage from "./components/pages/LoginPage"
 import SignupPage from "./components/pages/SignupPage ";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {Routes, Route } from "react-router-dom";
 import ProtectRoute from "./components/ui/ProtectRoute";
 import UnprotectedRoute from "./components/ui/UnprotectRoute";
 import Home from "./components/pages/Home";
@@ -13,7 +13,7 @@ import Library from "./components/pages/Library";
 function App() {
   return (
     <>
-        <Router>
+    
     <div className="relative w-full">
       
           <Routes>
@@ -37,7 +37,6 @@ function App() {
       </div>
     
     
-        </Router>
     </>
   )
 }
