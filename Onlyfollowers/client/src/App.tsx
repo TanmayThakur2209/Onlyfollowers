@@ -10,7 +10,38 @@ import Notification from "./components/pages/Notification";
 import Dashboard from "./components/pages/Dashboard";
 import Post from "./components/pages/Post";
 import Library from "./components/pages/Library";
+import { useEffect, useState } from "react";
+
 function App() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const isMobileDevice = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+    setIsMobile(isMobileDevice);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          backgroundColor: "#1a1a1a",
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "2rem",
+          textAlign: "center",
+        }}
+      >
+        <h1>📵 This app is not available on mobile devices.</h1>
+      </div>
+    );
+  }
+
+  
   return (
     <>
     
