@@ -24,19 +24,9 @@ function App() {
 
   if (isMobile) {
     return (
-      <div
-        style={{
-          height: "100vh",
-          backgroundColor: "#1a1a1a",
-          color: "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "2rem",
-          textAlign: "center",
-        }}
-      >
-        <h1>📵 This app is not available on mobile devices.</h1>
+      <div className="flex flex-col justify-center items-center h-screen text-center bg-[#343434] text-white">
+        <img src="/assets/mango-fruit-icon.svg"  className=" absolute w-20 top-10" />
+        <MdError className="text-4xl" /><h1 >Mobile version will be available soon.<br/> Till then stay tuned!!! </h1>
       </div>
     );
   }
