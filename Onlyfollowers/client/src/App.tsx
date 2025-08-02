@@ -11,6 +11,7 @@ import Dashboard from "./components/pages/Dashboard";
 import Post from "./components/pages/Post";
 import Library from "./components/pages/Library";
 import { useEffect, useState } from "react";
+import { MdError } from "react-icons/md";
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
@@ -26,7 +27,7 @@ function App() {
     return (
       <div className="flex flex-col justify-center items-center h-screen text-center bg-[#343434] text-white">
         <img src="/assets/mango-fruit-icon.svg"  className=" absolute w-20 top-10" />
-        <MdError className="text-4xl" /><h1 >Mobile version will be available soon.<br/> Till then stay tuned!!! </h1>
+        <MdError className="text-4xl"/> <h1 >Mobile version will be available soon.<br/> Till then stay tuned!!! </h1>
       </div>
     );
   }
