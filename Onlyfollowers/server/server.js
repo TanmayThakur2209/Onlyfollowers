@@ -1,19 +1,19 @@
-import dotenv from "dotenv";
-dotenv.config();
-console.log("✅ Loaded MONGO_URI:", process.env.MONGO_URI);
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import connectDB from "./config/db.js";
+import path from 'path';
 import { EventEmitter } from "events";
 EventEmitter.defaultMaxListeners = 20;
 
 
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 app.use(cors());
 app.use(express.json());
