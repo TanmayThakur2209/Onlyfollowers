@@ -29,21 +29,25 @@ router.post("/upload-photos", authenticateUser, async (req, res) => {
     const userId = req.user.id;
     const { coverPhoto, profilePhoto } = req.body;
 
-    const update = {};
-    if (coverPhoto) update.coverPhoto = { path: coverPhoto };
-    if (profilePhoto) update.profilePhoto = { path: profilePhoto };
+    const updateFields = {};
+    if (coverPhoto) {
+      updateFields.coverPhoto = { path: coverPhoto };
+    }
+    if (profilePhoto) {
+      updateFields.profilePhoto = { path: profilePhoto };
+    }
 
-    const updatedUser = await User.findByIdAndUpdate(userId, update, {
+    const updatedUser = await User.findByIdAndUpdate(userId, updateFields, {
       new: true,
     });
 
-    res.status(200).json(updatedUser);
-  } catch (error) {
-    console.error("Cloudinary URL photo upload error:", error);
-    res.status(500).json({ error: "Failed to update user photos" });
+    res.json(updatedUser);
+  } catch (err) {
+    console.error("Cloudinary URL photo upload error:", err);
+    res.status(500).json({ error: "Failed to upload Cloudinary photo" });
   }
 });
-    
+
 
   router.delete("/delete-photo", authenticateUser, async (req, res) => {
   const { type } = req.query;
