@@ -21,10 +21,8 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
-app.use("/uploads", express.static("uploads"));
 
 
-app.use("/api/auth", authRoutes);
 
 connectDB().then(() => {
   const PORT = process.env.PORT || 5000;
