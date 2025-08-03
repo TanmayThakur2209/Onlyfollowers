@@ -13,12 +13,13 @@ router.post("/upload", authenticateUser, async (req, res) => {
       return res.status(400).json({ error: "Missing or invalid post data" });
     }
 
-    const structuredFiles = files.map((url, index) => ({
-      filename: `file-${index}`, 
-      path: url,
-      mimetype: "",
-      size: 0,
-    }));
+    const structuredFiles = files.map(file => ({
+  filename: file.filename,
+  path: file.path,
+  mimetype: file.mimetype,
+  size: file.size,
+}));
+
 
     const newPost = new Post({
       title,
