@@ -35,23 +35,36 @@ function Dashboard(){
   
 
 
-  const handleSubmit = async  (file: File, type: "cover" | "profile") => {
-    const formData = new FormData();
-    formData.append(type === "cover" ? "coverPhoto" : "profilePhoto", file);
+  const handleSubmit = async (file: File, type: "cover" | "profile") => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "onlyfollowers"); 
+  formData.append("folder", `onlyfollowers/${type === "cover" ? "coverPhotos" : "profilePhotos"}`);
 
-    const token = localStorage.getItem("token");
-    const res = await fetch("https://onlyfollowers.onrender.com/api/user/upload-photos", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      body: formData
-    });
+  const res = await fetch("https://api.cloudinary.com/v1_1/dmvfseki9/auto/upload", {
+    method: "POST",
+    body: formData
+  });
 
-    const data = await res.json();
-    console.log("Updated user:", data);
-    setUser(data);
-  };
+  const data = await res.json();
+  const imageUrl = data.secure_url;
+
+  const token = localStorage.getItem("token");
+  const backendRes = await fetch("https://onlyfollowers.onrender.com/api/user/upload-photos", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      [type === "cover" ? "coverPhoto" : "profilePhoto"]: imageUrl
+    })
+  });
+
+  const result = await backendRes.json();
+  setUser(result); 
+};
+
   
   const getCoverPhotoType = (path: string) => {
   const ext = path.split(".").pop()?.toLowerCase();
@@ -98,7 +111,7 @@ function Dashboard(){
   {user?.coverPhoto?.path ? (
     getCoverPhotoType(user.coverPhoto.path) === "video" ? (
       <video
-        src={`https://onlyfollowers.onrender.com/uploads/${user.coverPhoto.path}`}
+        src={user.coverPhoto.path}
         autoPlay
         muted
         loop
@@ -107,7 +120,7 @@ function Dashboard(){
       />
     ) : (
       <img
-        src={`https://onlyfollowers.onrender.com/uploads/${user.coverPhoto.path}`}
+        src={user.coverPhoto.path}
         className="absolute inset-0 w-full h-full object-cover"
         alt="Cover"
       />
@@ -132,7 +145,7 @@ function Dashboard(){
               </div>
 
         <div style={user?.profilePhoto?.path? {
-          backgroundImage: `url("https://onlyfollowers.onrender.com/uploads/${user.profilePhoto.path}")`,
+          backgroundImage: `url("${user.profilePhoto.path}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }
