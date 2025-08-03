@@ -61,38 +61,52 @@ const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
 };
 
 
-    const handleSubmit =async ()=>{
+    const handleSubmit = async () => {
+  if (!title || !content || file.length === 0) {
+    alert("Please fill all fields and select a file.");
+    return;
+  }
 
+  try {
+    const uploadedUrls = await Promise.all(
+      file.map(async (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "onlyfollowers");
 
-        if (!title || !content || file.length === 0) {
-            alert("Please fill all fields and select a file.");
-            return;
-            }
-        
-        const post = new FormData();
-        post.append("title",title);
-        post.append("content",content)
-
-        file.forEach((file)=>{
-            post.append("files",file);
+        const res = await fetch("https://api.cloudinary.com/v1_1/dmvfseki9/auto/upload", {
+          method: "POST",
+          body: formData
         });
-        try {
-            const res = await fetch("https://onlyfollowers.onrender.com/api/post/upload", {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-                body: post,
-            });
-            
-            const data = await res.json();
-            console.log("Uploaded:", data);
-            alert("Uploaded:"+ data);
-        } catch (err) {
-            console.error("Upload failed:", err);
-            alert("Upload failed:"+err);
-        }
-    };
+
+        const data = await res.json();
+        return data.secure_url;
+      })
+    );
+
+    const token = localStorage.getItem("token");
+    const res = await fetch("https://onlyfollowers.onrender.com/api/post/upload", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        title,
+        content,
+        files: uploadedUrls
+      })
+    });
+
+    const result = await res.json();
+    console.log("Uploaded post:", result);
+    alert("Uploaded successfully!");
+  } catch (err) {
+    console.error("Upload failed:", err);
+    alert("Upload failed");
+  }
+};
+
     
 
 
