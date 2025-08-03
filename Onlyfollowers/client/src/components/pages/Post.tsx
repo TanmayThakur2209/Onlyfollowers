@@ -61,7 +61,7 @@ const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
 };
 
 
-    const handleSubmit = async () => {
+const handleSubmit = async () => {
   if (!title || !content || file.length === 0) {
     alert("Please fill all fields and select a file.");
     return;
@@ -80,7 +80,12 @@ const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         });
 
         const data = await res.json();
-        return data.secure_url;
+       return {
+          filename: file.name,
+          path: data.secure_url,
+          mimetype: file.type,
+          size: file.size
+        };
       })
     );
 
