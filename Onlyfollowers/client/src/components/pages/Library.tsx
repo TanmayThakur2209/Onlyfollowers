@@ -108,7 +108,7 @@ function Library(){
         <div className="w-full flex flex-wrap gap-5 justify-center items-center">
           {post.files.map((file, idx) => {
             const ext = file.filename.split(".").pop()?.toLowerCase();
-            const fileUrl = `https://onlyfollowers.onrender.com/${file.path}`;
+            const fileUrl = `${file.path}`;
 
             if (["png", "jpg", "jpeg", "webp"].includes(ext!)) {
               return (
