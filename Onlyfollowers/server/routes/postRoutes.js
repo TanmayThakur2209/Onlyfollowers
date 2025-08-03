@@ -1,41 +1,34 @@
 import express from "express";
-import multer from "multer";
 import Post from "../models/Post.js";
 import authenticateUser from "../middleware/auth.js";
 
-const router =express.Router();
-const storage = multer.diskStorage({
-    destination: (req,res,cb)=>{
-          cb(null, "uploads/");
-    },
-     filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-const upload = multer({ storage });
- 
+const router = express.Router();
 
-router.post('/upload',authenticateUser, upload.array('files'), async (req, res) => {
+router.post("/upload", authenticateUser, async (req, res) => {
   try {
-    const { title, content } = req.body;
+    const { title, content, files } = req.body;
     const userId = req.user.id;
-    const files = req.files.map(file => ({
-      filename: file.originalname,
-      path: file.path,
-      mimetype: file.mimetype,
-      size: file.size,
+
+    if (!title || !content || !Array.isArray(files)) {
+      return res.status(400).json({ error: "Missing or invalid post data" });
+    }
+
+    const structuredFiles = files.map((url, index) => ({
+      filename: `file-${index}`, 
+      path: url,
+      mimetype: "",
+      size: 0,
     }));
 
     const newPost = new Post({
       title,
       content,
-      files,
+      files: structuredFiles,
       createdBy: userId,
     });
 
     const savedPost = await newPost.save();
     res.status(201).json(savedPost);
-    alert("Uploaded")
   } catch (err) {
     console.error("Upload failed:", err);
     res.status(500).json({ error: "Failed to upload post" });
