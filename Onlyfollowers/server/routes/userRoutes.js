@@ -1,6 +1,5 @@
 import express from "express";
 import authenticateUser  from "../middleware/auth.js";
-import multer from "multer";
 import User from "../models/User.js";
 
 const router = express.Router();
@@ -24,59 +23,28 @@ router.get("/profile", authenticateUser, async (req, res) => {
   }
 });
 
-const storage = multer.diskStorage({
-    destination: (req,res,cb)=>{
-          cb(null, "uploads/");
-    },
-     filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-const upload = multer({ storage });
 
-router.post("/upload-photos", authenticateUser, upload.fields([
-  { name: 'profilePhoto', maxCount: 1 },
-  { name: 'coverPhoto', maxCount: 1 }
-]), async (req, res) => {
-  console.log("REQ.FILES:", req.files);
-console.log("REQ.BODY:", req.body);
-
+router.post("/upload-photos", authenticateUser, async (req, res) => {
   try {
     const userId = req.user.id;
-    const updateFields = {};
+    const { coverPhoto, profilePhoto } = req.body;
 
-    if (req.files.profilePhoto) {
-      const file = req.files.profilePhoto[0];
-      updateFields.profilePhoto = {
-        filename: file.originalname,
-        path: file.filename,
-        mimetype: file.mimetype,
-        size: file.size
-      };
-    }
+    const update = {};
+    if (coverPhoto) update.coverPhoto = { path: coverPhoto };
+    if (profilePhoto) update.profilePhoto = { path: profilePhoto };
 
-    if (req.files.coverPhoto) {
-      const file = req.files.coverPhoto[0];
-      updateFields.coverPhoto = {
-        filename: file.originalname,
-        path: file.filename,
-        mimetype: file.mimetype,
-        size: file.size
-      };
-    }
+    const updatedUser = await User.findByIdAndUpdate(userId, update, {
+      new: true,
+    });
 
-    const updatedUser = await User.findByIdAndUpdate(userId, updateFields, {
-        new: true,
-      });
-
-      res.json(updatedUser);
-    } catch (err) {
-      console.error("Photo upload error:", err);
-      res.status(500).json({ error: "Failed to upload profile/cover photo" });
-    }
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error("Cloudinary URL photo upload error:", error);
+    res.status(500).json({ error: "Failed to update user photos" });
   }
-);
+});
     
+
   router.delete("/delete-photo", authenticateUser, async (req, res) => {
   const { type } = req.query;
   const userId = req.user.id;
