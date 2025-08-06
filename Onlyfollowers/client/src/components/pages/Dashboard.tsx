@@ -104,12 +104,10 @@ function Dashboard(){
 
     return(
 <div className="bg-black w-full min-h-screen flex ">
- {loading ? (
-    <div className="absolute z-[100] w-full min-h-screen bg-[#1d1d1d] backdrop-blur-sm flex items-center justify-center">
+ <div  className={`absolute z-[100] duration-500  w-full min-h-screen ${loading ? "opacity-100" : "opacity-0"} bg-[#1d1d1d] backdrop-blur-sm flex items-center justify-center`}>
           <ScaleLoader  color="#36d7b7" height={40} />
 
     </div>
-      ) : <></>}
         <div className="z-50 h-full relative flex">
       <SidebarCreators/>
       </div>
