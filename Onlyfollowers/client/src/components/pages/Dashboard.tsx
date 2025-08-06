@@ -5,6 +5,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { MdPhotoSizeSelectActual } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 
 function Dashboard(){
@@ -12,6 +13,7 @@ function Dashboard(){
   
     const [user, setUser] = useState<any>(null);
     const [value, setValue] = useState("");
+    const [loading, setLoading] = useState(true);
     
 
   useEffect(() => {
@@ -30,6 +32,7 @@ function Dashboard(){
       .catch((err) => {
         console.error("Error  fetching user:", err);
       });
+      setLoading(false);
   }, []);
 
   
@@ -99,6 +102,12 @@ function Dashboard(){
 
     return(
 <div className="bg-black w-full min-h-screen flex ">
+ {loading ? (
+    <div className="absolute z-[100] w-full min-h-screen bg-[#1d1d1d] backdrop-blur-sm flex items-center justify-center">
+          <ScaleLoader  color="#36d7b7" height={40} />
+
+    </div>
+      ) : <></>}
         <div className="z-50 h-full relative flex">
       <SidebarCreators/>
       </div>
