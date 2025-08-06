@@ -31,8 +31,10 @@ function Dashboard(){
       .then((data) => {setUser(data);console.log(data)})
       .catch((err) => {
         console.error("Error  fetching user:", err);
-      });
-      setLoading(false);
+      })
+      .finally(()=>{
+        setLoading(false);
+        }); 
   }, []);
 
   
