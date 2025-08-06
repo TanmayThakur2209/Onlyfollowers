@@ -161,7 +161,7 @@ function Dashboard(){
           backgroundPosition: "center",
         }
       : undefined} 
-      className="bg-gradient-to-b from-[#c34303] to-[#df5b19]  relative z-100 mx-auto -mt-15 h-30 w-30 rounded-xl flex items-center justify-center text-[#ffffff] text-5xl poppins-regular ">
+      className="bg-gradient-to-b from-[#c34303] to-[#df5b19]  relative z-10 mx-auto -mt-15 h-30 w-30 rounded-xl flex items-center justify-center text-[#ffffff] text-5xl poppins-regular ">
            {user?.profilePhoto?.path? "":user?.username[0]}  
            <label className="absolute opacity-0 hover:opacity-100 duration-200 z-10 flex justify-center items-center  h-30 w-30  rounded-xl">
            <MdPhotoSizeSelectActual className="absolute mt-27 ml-27 rounded-full text-4xl bg-[#343434] hover:bg-[#484848] duration-200 p-2"/>
