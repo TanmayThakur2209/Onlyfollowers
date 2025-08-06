@@ -3,6 +3,7 @@ import { useState,useEffect } from "react"
 import { formatDistanceToNow } from 'date-fns';
 import { IoMdMore } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 
 interface PostType {
@@ -25,6 +26,7 @@ function Library(){
 
   const [posts, setPosts] = useState<PostType[]>([]);
   const [OpenDelete, setOpenDelete]=useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
   const handleMouseDown = (e: MouseEvent) => {
@@ -54,6 +56,8 @@ function Library(){
       });
       
     const data = await res.json();
+    setLoading(false);
+      
     if (!Array.isArray(data)) {
   console.error("Expected array for posts, got:", data);
   return;
@@ -61,6 +65,7 @@ function Library(){
     setPosts(data);
     };
     fetchPosts();
+    
     }, []);
 
     const handleDelete = async (postId: string) => {
@@ -89,6 +94,11 @@ function Library(){
 
     return(
         <div className="bg-black w-full min-h-screen flex ">
+
+          <div  className={`absolute z-[100] duration-200  w-full min-h-screen ${loading ? "opacity-100" : "opacity-0 pointer-events-none"} bg-[#1d1d1d] backdrop-blur-sm flex items-center justify-center`}>
+          <ScaleLoader  color="#36d7b7" height={40} />
+        </div>
+
             <div className="z-50 h-full relative flex">
                 <SidebarCreators/>
             </div>

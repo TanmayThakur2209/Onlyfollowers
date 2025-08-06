@@ -12,7 +12,7 @@ function NavigationBar() {
 
      useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50); // Change threshold if needed
+      setIsScrolled(window.scrollY > 50); 
     };
 
      window.addEventListener('scroll', handleScroll);
