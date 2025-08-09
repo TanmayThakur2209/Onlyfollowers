@@ -28,6 +28,7 @@ export const login = async (req, res) => {
     if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
 
     const token = jwt.sign({ id: user._id,username: user.username,}, process.env.JWT_SECRET);
+    console.log("TOKEN PAYLOAD:", jwt.decode(token));
     res.json({ token });
   } catch (err) {
      console.error("Login error:", err); 
