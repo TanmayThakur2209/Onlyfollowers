@@ -1,5 +1,9 @@
-# OnlyFollowers
-
+<h1> 
+<img src="https://raw.githubusercontent.com/TanmayThakur2209/Onlyfollowers/refs/heads/master/client/public/assets/mango-fruit-icon.svg"
+  width="50"
+  />
+  OnlyFollowers
+</h1>
 OnlyFollowers is a full-stack social media platform that enables users to create profiles, share posts with images, interact with other users, and build an online community. The application provides secure authentication, media uploads, personalized user profiles, and a responsive user experience built with modern web technologies.
 
 ---
