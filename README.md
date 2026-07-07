@@ -1,6 +1,6 @@
 <h1> 
 <img src="https://raw.githubusercontent.com/TanmayThakur2209/Onlyfollowers/refs/heads/master/client/public/assets/mango-fruit-icon.svg"
-  width="50"
+  width="40"
   />
   OnlyFollowers
 </h1>
